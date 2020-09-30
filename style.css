@@ -1,0 +1,13 @@
+*, body {
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+#questions {
+    font-weight: bold;
+    font-size: 24px;
+}
+.btn {
+    color: gray;
+    color: black;
+}
