@@ -1,15 +1,11 @@
 var quiz = document.getElementById("questions");
 var answer = document.getElementById("answers");
-var q1=document.getElementById("qAnswer1");
-var q2=document.getElementById("qAnswer2");
-var q3=document.getElementById("qAnswer3");
-var q4=document.getElementById("qAnswer4");
+var q1 = document.getElementById("qAnswer1");
+var q2 = document.getElementById("qAnswer2");
+var q3 = document.getElementById("qAnswer3");
+var q4 = document.getElementById("qAnswer4");
 var btn = document.getElementById("submit");
 var totalSeconds = document.querySelector(".timer");
-
-
-
-
 
 var myQuestions = [
   {
@@ -69,18 +65,35 @@ var myQuestions = [
   },
 ];
 
-var secsLeft = 3;
+var questionIndex = 0;
+console.log(myQuestions[questionIndex].answers);
+
+// var questionIndex = 0;
+function showQuestions() {
+  if (questionIndex === questions.length) {
+    sendMessage();
+  } else {
+    quiz.textContent = myQuestions[0].question;
+    answer.setAttribute("class", "unhide");
+    q1.textContent = myQuestions[0].answers[0];
+    q2.textContent = myQuestions[0].answers[1];
+    q3.textContent = myQuestions[0].answers[2];
+    q4.textContent = myQuestions[0].answers[3];
+  }
+}
+
+var secsLeft = 10;
 function setTime() {
-  var timerInterval = setInterval(   function() {
+  var timerInterval = setInterval(function () {
     secsLeft--;
     console.log("It's counting");
     totalSeconds.textContent = "Timer " + secsLeft;
 
-    if(secsLeft === 0) { //If time reaches 0 or questions end then sendMessage()
-      clearInterval(timerInterval);//stops the function holding timerInterval
+    if (secsLeft === 0) {
+      //If time reaches 0 || questions end then sendMessage()
+      clearInterval(timerInterval); //stops the function holding timerInterval
       sendMessage();
     }
-
   }, 1000);
 }
 
@@ -91,16 +104,14 @@ function sendMessage() {
 
   newEl.textContent = "Game Over";
   quiz.appendChild(newEl);
-
 }
 
-btn.addEventListener("click", function(event) {
-  event.preventDefault();//stops default action
+btn.addEventListener("click", function (event) {
+  event.preventDefault(); //stops default action
+  showQuestions();
   setTime();
-  console.log(event);
-  quiz.textContent = "";
-  
-  var response = "Thank you for your submission " 
+
+  var response = "Thank you for your submission ";
   btn.textContent = response;
   btn.setAttribute("class", "hide");
 });
