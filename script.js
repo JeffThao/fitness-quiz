@@ -2,8 +2,7 @@ var quiz = document.getElementById("questions");
 var answer = document.getElementById("answers");
 var btn = document.getElementById("submit");
 var totalSeconds = document.getElementsByClassName("timer");
-var timer = 60;
-var timerCount;
+var timer = 120;
 
 
 var myQuestions = [
@@ -44,36 +43,4 @@ var myQuestions = [
         correctAnswer: "Grab the dumbbells and bring them to your face, bending at the eblows and with palms facing toward you."
     }
 ];
-var choices = 0;
-function startQuestions() {
-    timerCount = setInterval(updateTimer, 1000);
-    answer.textContent = "";
-    var quizQuestion = myQuestions;
-    quiz.textContent = quizQuestion.question;
-    $("#timer").textContent = timer;
-    for (var i = 0; i < quizQuestion[1].length; i++) {
-        var answerBtn = document.createElement("button");
-        answerBtn.textContent =  quizQuestion.answers[i];
-        answerBtn.onclick = chooseAnswer();
-        answer.appendChild(answerBtn);
-    }
-}
 
-function updateTimer() {
-    timer -= 1;
-    totalSeconds.textContent = timer;
-}
-
-function chooseAnswer() {
-    if ((myQuestions[0].correctAnswer === true) || (myQuestions[1].correctAnswer === true) || (myQuestions[2].correctAnswer === true) || (myQuestions[3].correctAnswer === true) ||(myQuestions[4].correctAnswer === true)){
-        timer += 10;
-    } else {
-        timer -= 10;
-    }
-}
-btn.addEventListener("click", function(){
-    console.log("game start");
-    answer.textContent = "";
-    startQuestions()
-    btn.textContent = "Submit";
-})
