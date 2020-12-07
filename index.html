@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,21 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="row">
             <div class="col-sm m-5">
-                <div class="timer"></div>
-                <div id="questions">Fitness quiz!</div>
+                <h3>Fitness Quiz</h3>
+                <div ><h3 class="timer"></h3></div>
+                <div id="questions">Click on the button the start the quiz!</div>
                 <hr>
-                <div id="answers"></div>
+                <div id="answers">
+                    <button id="qAnswer1"></button>
+                    <button id="qAnswer2"></button>
+                    <button id="qAnswer3"></button>
+                    <button id="qAnswer4"></button>
+                </div>
                 <button id="submit" type="submit" class="btn btn-light btn-lg">I'm Ready</button>
             </div>
         </div>
@@ -24,4 +32,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
