@@ -87,7 +87,7 @@ var secsLeft = 10;
 function setTime() {
   var timerInterval = setInterval(function () {
     secsLeft--;
-    console.log("It's counting");
+    // console.log("It's counting");
     totalSeconds.textContent = "Timer " + secsLeft;
 
     if (secsLeft === 0) {
@@ -120,11 +120,13 @@ btn.addEventListener("click", function (event) {
 answerBtn.addEventListener("click", function(event) {
   event.preventDefault();
   var playerAnswer = event.target.textContent;
-    if (playerAnswer === questions[questionIndex].correctAnswer) {
+  console.log(playerAnswer);
+    if (playerAnswer === myQuestions[0].correctAnswer) {
       secsLeft = secsLeft +10;
+      console.log("timer added 10");
     } else {
-        
         secsLeft = secsLeft - 10;
+        console.log("timer minus 10");
     }
     questionIndex++;
     showQuestion();
