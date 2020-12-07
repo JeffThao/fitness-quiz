@@ -75,11 +75,22 @@ function setTime() {
     console.log("It's counting");
     totalSeconds.textContent = "Timer " + secsLeft;
 
-    // if(secondsLeft === 0) {
-    //   clearInterval(timerInterval);//stops the function holding timerInterval
-    //   // sendMessage();
-    // }
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);//stops the function holding timerInterval
+      // sendMessage();
+    }
 
   }, 1000);
 }
-setTime();
+
+
+btn.addEventListener("click", function(event) {
+  event.preventDefault();//stops default action
+  setTime();
+  console.log(event);
+  quiz.textContent = "";
+  
+  var response = "Thank you for your submission " 
+  btn.textContent = response;
+  btn.setAttribute("class", "hide");
+});
