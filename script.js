@@ -6,7 +6,7 @@ var q3=document.getElementById("qAnswer3");
 var q4=document.getElementById("qAnswer4");
 var btn = document.getElementById("submit");
 var totalSeconds = document.querySelector(".timer");
-var secsLeft = 120;
+
 
 
 
@@ -69,20 +69,30 @@ var myQuestions = [
   },
 ];
 
+var secsLeft = 3;
 function setTime() {
   var timerInterval = setInterval(   function() {
     secsLeft--;
     console.log("It's counting");
     totalSeconds.textContent = "Timer " + secsLeft;
 
-    if(secondsLeft === 0) {
+    if(secsLeft === 0) { //If time reaches 0 or questions end then sendMessage()
       clearInterval(timerInterval);//stops the function holding timerInterval
-      // sendMessage();
+      sendMessage();
     }
 
   }, 1000);
 }
 
+function sendMessage() {
+  totalSeconds.textContent = "Timer " + secsLeft;
+
+  var newEl = document.createElement("p");
+
+  newEl.textContent = "Game Over";
+  quiz.appendChild(newEl);
+
+}
 
 btn.addEventListener("click", function(event) {
   event.preventDefault();//stops default action

@@ -1,7 +1,7 @@
 *, body {
     text-align: center;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: lightblue;
 }
 #questions {
     font-weight: bold;
@@ -10,4 +10,8 @@
 .btn {
     color: gray;
     color: black;
+}
+
+.hide {
+    display: none;
 }
