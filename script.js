@@ -3,6 +3,9 @@ var answer = document.getElementById("answers");
 var btn = document.getElementById("submit");
 var totalSeconds = document.getElementsByClassName("timer");
 var timer = 60;
+var timerCount;
+
+
 var myQuestions = [
     {
         question: "How should you do a bench press?",
@@ -43,6 +46,7 @@ var myQuestions = [
 ];
 var choices = 0;
 function startQuestions() {
+    timerCount = setInterval(updateTimer, 1000);
     answer.textContent = "";
     var quizQuestion = myQuestions;
     quiz.textContent = quizQuestion.question;
@@ -54,6 +58,12 @@ function startQuestions() {
         answer.appendChild(answerBtn);
     }
 }
+
+function updateTimer() {
+    timer -= 1;
+    totalSeconds.textContent = timer;
+}
+
 function chooseAnswer() {
     if ((myQuestions[0].correctAnswer === true) || (myQuestions[1].correctAnswer === true) || (myQuestions[2].correctAnswer === true) || (myQuestions[3].correctAnswer === true) ||(myQuestions[4].correctAnswer === true)){
         timer += 10;
@@ -62,6 +72,7 @@ function chooseAnswer() {
     }
 }
 btn.addEventListener("click", function(){
+    console.log("game start");
     answer.textContent = "";
     startQuestions()
     btn.textContent = "Submit";
