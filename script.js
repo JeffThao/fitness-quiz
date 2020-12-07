@@ -5,6 +5,7 @@ var q2 = document.getElementById("qAnswer2");
 var q3 = document.getElementById("qAnswer3");
 var q4 = document.getElementById("qAnswer4");
 var btn = document.getElementById("submit");
+var answerBtn = document.getElementById("answers");
 var totalSeconds = document.querySelector(".timer");
 
 var myQuestions = [
@@ -114,4 +115,17 @@ btn.addEventListener("click", function (event) {
   var response = "Thank you for your submission ";
   btn.textContent = response;
   btn.setAttribute("class", "hide");
+});
+
+answerBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  var playerAnswer = event.target.textContent;
+    if (playerAnswer === questions[questionIndex].correctAnswer) {
+      secsLeft = secsLeft +10;
+    } else {
+        
+        secsLeft = secsLeft - 10;
+    }
+    questionIndex++;
+    showQuestion();
 });
