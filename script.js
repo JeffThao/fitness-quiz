@@ -71,15 +71,15 @@ console.log(myQuestions[questionIndex].answers);
 
 // var questionIndex = 0;
 function showQuestions() {
-  if (questionIndex === questions.length) {
+  if (questionIndex === myQuestions.length) {
     sendMessage();
   } else {
-    quiz.textContent = myQuestions[0].question;
-    answer.setAttribute("class", "unhide");
-    q1.textContent = myQuestions[0].answers[0];
-    q2.textContent = myQuestions[0].answers[1];
-    q3.textContent = myQuestions[0].answers[2];
-    q4.textContent = myQuestions[0].answers[3];
+    quiz.textContent = myQuestions[questionIndex].question;
+    
+    q1.textContent = myQuestions[questionIndex].answers[0];
+    q2.textContent = myQuestions[questionIndex].answers[1];
+    q3.textContent = myQuestions[questionIndex].answers[2];
+    q4.textContent = myQuestions[questionIndex].answers[3];
   }
 }
 
@@ -90,44 +90,42 @@ function setTime() {
     // console.log("It's counting");
     totalSeconds.textContent = "Timer " + secsLeft;
 
-    if (secsLeft === 0) {
+    if (secsLeft <= 0) {
       //If time reaches 0 || questions end then sendMessage()
       clearInterval(timerInterval); //stops the function holding timerInterval
       sendMessage();
     }
-  }, 1000);
+  }, 1000); //set how fast to countdown
 }
 
 function sendMessage() {
   totalSeconds.textContent = "Timer " + secsLeft;
-
+  quiz.textContent = "";
   var newEl = document.createElement("p");
-
   newEl.textContent = "Game Over";
   quiz.appendChild(newEl);
+}
+
+function checkPlayerAnswer(e) {
+  var playerAnswer = e.target.textContent;
+  // console.log(playerAnswer);
+    if (playerAnswer === myQuestions[questionIndex].correctAnswer) {
+      secsLeft = secsLeft + 5;
+      console.log("timer added 5");
+    } else {
+        secsLeft = secsLeft - 5;
+        console.log("timer minus 5");
+    }
+    questionIndex++;
+    showQuestions();
 }
 
 btn.addEventListener("click", function (event) {
   event.preventDefault(); //stops default action
   showQuestions();
   setTime();
-
-  var response = "Thank you for your submission ";
-  btn.textContent = response;
+  answer.setAttribute("class", "unhide");
   btn.setAttribute("class", "hide");
 });
 
-answerBtn.addEventListener("click", function(event) {
-  event.preventDefault();
-  var playerAnswer = event.target.textContent;
-  console.log(playerAnswer);
-    if (playerAnswer === myQuestions[0].correctAnswer) {
-      secsLeft = secsLeft +10;
-      console.log("timer added 10");
-    } else {
-        secsLeft = secsLeft - 10;
-        console.log("timer minus 10");
-    }
-    questionIndex++;
-    showQuestion();
-});
+answerBtn.addEventListener("click", checkPlayerAnswer);
