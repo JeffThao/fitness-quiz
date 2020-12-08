@@ -83,7 +83,7 @@ function showQuestions() {
   }
 }
 
-var secsLeft = 10;
+var secsLeft = 120;
 function setTime() {
   var timerInterval = setInterval(function () {
     secsLeft--;
