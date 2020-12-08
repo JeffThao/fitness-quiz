@@ -67,7 +67,7 @@ var myQuestions = [
 ];
 
 var questionIndex = 0;
-console.log(myQuestions[questionIndex].answers);
+// console.log(myQuestions[questionIndex].answers);
 
 // var questionIndex = 0;
 function showQuestions() {
@@ -90,7 +90,7 @@ function setTime() {
     // console.log("It's counting");
     totalSeconds.textContent = "Timer " + secsLeft;
 
-    if (secsLeft <= 0) {
+    if ((secsLeft <= 0) || (questionIndex === myQuestions.length)) {
       //If time reaches 0 || questions end then sendMessage()
       clearInterval(timerInterval); //stops the function holding timerInterval
       sendMessage();
